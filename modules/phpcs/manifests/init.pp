@@ -9,14 +9,18 @@ class phpcs (
 		$php_package = "php${phpcs_config[php]}"
 	}
 
-	package { 'php-pear':
-		ensure  => latest,
-		require => Package["$php_package-dev"]
+	if ! defined( Package['php-pear'] ) {
+		package { 'php-pear':
+			ensure  => latest,
+			require => Package["$php_package-dev"]
+		}
 	}
 
-	package { "$php_package-dev":
-		ensure  => latest,
-		require => Package["$php_package-common"]
+	if ! defined( Package["$php_package-dev"] ) {
+		package { "$php_package-dev":
+			ensure  => latest,
+			require => Package["$php_package-common"]
+		}
 	}
 
 	exec { 'phpcs install':
