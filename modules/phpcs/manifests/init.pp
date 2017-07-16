@@ -4,7 +4,7 @@ class phpcs (
 	$phpcs_config = sz_load_config()
 ) {
 
-	if versioncmp( "${phpcs_config[php]}", '5.4') <= 0 {
+	if versioncmp( $phpcs_config[php], '5.4') <= 0 {
 		$php_package = 'php5'
 	} else {
 		$php_package = "php${phpcs_config[php]}"
