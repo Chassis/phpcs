@@ -34,7 +34,12 @@ class phpcs (
 		exec { 'phpcs install':
 			command => 'pear install PHP_CodeSniffer',
 			path    => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
-			require => Package[ "${php_package}-dev", 'php-pear', "${php_package}-fpm" ],
+			require => [
+				Package[ "${php_package}-dev" ],
+				Package[ 'php-pear'],
+				Package[ "${php_package}-fpm" ],
+				Package[ "${php_package}-xml" ],
+			],
 			unless  => 'which phpcs',
 			notify  => Service["${php_package}-fpm"],
 		}
