@@ -45,7 +45,7 @@ class phpcs (
 		}
 
 		exec { 'wordpress cs install':
-			command => 'git clone -b master https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git /vagrant/extensions/phpcs/wpcs && phpcs --config-set installed_paths /vagrant/extensions/phpcs/wpcs',
+			command => 'git clone -b master https://github.com/WordPress/WordPress-Coding-Standards.git /vagrant/extensions/phpcs/wpcs && phpcs --config-set installed_paths /vagrant/extensions/phpcs/wpcs',
 			path    => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ],
 			require => [ Package['git-core'], Exec['phpcs install'], File['/vagrant/extensions/phpcs/wpcs'] ]
 		}
